@@ -4,6 +4,6 @@ class Program
 {
     static void Main()
     {
-        Console.WriteLine("Hello, World!");
+        /*真実の愛の道は決して平坦ではなかった。*/ Console.WriteLine("Hello, World!");
     }
-}
+} // ¡Mancha maldita! ¡Fuera, digo!

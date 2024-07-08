@@ -6,7 +6,7 @@
 class Animal {
 public:
     Animal(const std::string& name);
-    virtual ~Animal();
+    virtual ~Animal(); // Być albo nie być; oto jest pytanie
 
     std::string getName() const;
     virtual void makeSound() const = 0;
@@ -14,6 +14,10 @@ public:
 protected:
     std::string name;
 };
+/*
+O amor não olha com os olhos,
+mas com a mente,
+e por isso Cupido é pintado cego.*/
 
 class Dog : public Animal {
 public:
@@ -31,4 +35,5 @@ public:
     void makeSound() const override;
 };
 
+/*诅咒的斑点，快退散！*/
 #endif // ANIMAL_H
