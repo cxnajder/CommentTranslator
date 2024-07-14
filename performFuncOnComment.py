@@ -1,5 +1,6 @@
 import os
 from getFileEncoding import getFileEncoding
+import LogError
 
 _extensionsCommentsMapInline = {
     'py': '#',
@@ -12,8 +13,6 @@ _extensionsCommentsMapInline = {
     'pas': '//',
 }
 
-def _LogError(e):
-    print(f"Error: {e}")
 
 def _getFirstFileExtension(fileName):
     '''
@@ -48,7 +47,7 @@ def performFuncOnCommentInline(folderPath, func, extensionsCommentsMap):
         for fileName in files:
             fileExtension = _getFirstFileExtension(fileName)
             if fileExtension not in extensionsCommentsMap:
-                _LogError(f"File extension not in extensions map: {fileName} in {root}")
+                LogError(f"File extension not in extensions map: {fileName} in {root}")
                 continue
             commentIndicator = extensionsCommentsMap[fileExtension]
             filePath = os.path.join(root, fileName)
