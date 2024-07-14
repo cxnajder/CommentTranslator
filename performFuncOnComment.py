@@ -1,4 +1,5 @@
 import os
+from getFileEncoding import getFileEncoding
 
 _extensionsCommentsMapInline = {
     'py': '#',
@@ -51,7 +52,10 @@ def performFuncOnCommentInline(folderPath, func, extensionsCommentsMap):
                 continue
             commentIndicator = extensionsCommentsMap[fileExtension]
             filePath = os.path.join(root, fileName)
-            with open(filePath, 'r', encoding='utf-8') as file:
+            fileEncoding = getFileEncoding(filePath)
+            if fileEncoding == 'ascii':
+                fileEncoding = 'utf-8'
+            with open(filePath, 'r', encoding=fileEncoding) as file:
                 for lineNumber, line in enumerate(file, start=1):
                     strippedLine = line.strip()
                     index = strippedLine.find(commentIndicator)
@@ -68,7 +72,7 @@ def _tetsFuncPrintForPerformFuncOnCommentInline(commentContent, filePath, lineNu
     print(testDecoraotr(__tetsFuncForPerformFuncOnCommentInline(commentContent, filePath, lineNumber)))
 
 def runTestPerformFuncOnCommentInline():
-    samplesFolderPath = ".\samples"
+    samplesFolderPath = "./samples"
     testedFunc = _tetsFuncPrintForPerformFuncOnCommentInline
 
     print(subtitleDecorator("Testing performFuncOnCommentInline(folderPath, func, extensionsCommentsMap):"))
