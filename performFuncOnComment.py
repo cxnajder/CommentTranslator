@@ -53,8 +53,6 @@ def performFuncOnCommentInline(folderPath, func, extensionsCommentsMap):
             commentIndicator = extensionsCommentsMap[fileExtension]
             filePath = os.path.join(root, fileName)
             fileEncoding = getFileEncoding(filePath)
-            if fileEncoding == 'ascii':
-                fileEncoding = 'utf-8'
             with open(filePath, 'r', encoding=fileEncoding) as file:
                 for lineNumber, line in enumerate(file, start=1):
                     strippedLine = line.strip()
