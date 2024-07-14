@@ -4,6 +4,7 @@ _extensionsCommentsMapInline = {
     'py': '#',
     'cpp': '//',
     'h': '//',
+    'hpp': '//',
     'c': '//',
     'cs': '//',
     'js': '//',
