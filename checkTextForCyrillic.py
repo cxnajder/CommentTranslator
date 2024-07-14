@@ -8,3 +8,10 @@ def checkTextForCyrillic(text):
     if cyrillicPattern.search(text):
         return True
     return False
+
+
+if __name__ == "__main__":
+    # Test cases
+    print(checkTextForCyrillic("Hello, world!"))
+    print(checkTextForCyrillic("Привет, мир!"))
+    print(checkTextForCyrillic("Hello, мир!"))
