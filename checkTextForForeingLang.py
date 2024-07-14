@@ -4,7 +4,7 @@ from langdetect.lang_detect_exception import LangDetectException
 
 DetectorFactory.seed = 0
 
-def containsForeignLanguage(text, targetLanguage='en'):
+def checkTextForForeingLang(text, targetLanguage='en'):
     try:
         # Detect the dominant language in the text
         detectedLanguages = detectLangs(text)
@@ -20,6 +20,6 @@ def containsForeignLanguage(text, targetLanguage='en'):
 
 if __name__ == "__main__":
     # Test cases
-    print(containsForeignLanguage("Hello, world!"))
-    print(containsForeignLanguage("Привет, мир!"))
-    print(containsForeignLanguage("Hello, мир!"))
+    print(checkTextForForeingLang("Hello, world!"))
+    print(checkTextForForeingLang("Привет, мир!"))
+    print(checkTextForForeingLang("Hello, мир!"))
