@@ -1,12 +1,12 @@
 from googletrans import Translator
-import LogError
+from logger.LogError import LogError
 
 def translateText(text, destinationLanguage='en'):
     translator = Translator()
     try:
         translation = translator.translate(text, dest=destinationLanguage)
     except Exception as e:
-        LogError(f'Translation of {text} failed: {e}; Returning original text.')
+        LogError(f'Translation of \'{text}\' failed: \'{e}\'; Returning original text.')
         return text
     return translation.text
 

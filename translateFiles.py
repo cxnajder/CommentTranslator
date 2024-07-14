@@ -1,9 +1,12 @@
 import os
-from checkTextForForeingLang import checkTextForForeingLang
-from translateText import translateText
+from utils.checkTextLang.checkTextForForeignLang import checkTextForForeignLang
+from utils.checkTextLang.checkTextForCyrillic import checkTextForCyrillic
+from utils.translateText import translateText
+from utils.getCommentMapFromFile import getCommentMapFromFile
 
 def translateFile(filePath):
-    commentMap = getCommentMapFromFile(filePath, checkTextForForeingLang)
+    # replace 'checkTextForForeignLang' with 'checkTextForCyrillic' if you are interested only in translating cyrillic
+    commentMap = getCommentMapFromFile(filePath, checkTextForForeignLang)
 
     # open file and get content
 

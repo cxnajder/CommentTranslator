@@ -15,5 +15,7 @@ def _testGetFileEncoding(filePath):
 
 if __name__ == "__main__":
     # Some Tests
+    # To make this test work you need to run this script from project's directory like: 
+    # python3 ./utils/getFileParams/getFileEncoding.py
     _testGetFileEncoding('./samples/encoding/utf-8.cpp') # utf-8
     _testGetFileEncoding('./samples/encoding/windows-1251.cpp') # windows-1251

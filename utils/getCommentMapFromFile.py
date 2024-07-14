@@ -1,6 +1,6 @@
-from getFileExtension import getFileExtension
-from getFileEncoding import getFileEncoding
-from LogError import LogError
+from getFileParams.getFileExtension import getFileExtension
+from getFileParams.getFileEncoding import getFileEncoding
+from logger.LogError import LogError
 import os
 
 fileExtensionToComment = {
