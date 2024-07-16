@@ -39,7 +39,7 @@ def getCommentMapFromFile(filePath, additionalLogic=defaultLogic):
     fileExtension = getFileExtension(fileName)
 
     if fileExtension not in fileExtensionToComment:
-        LogError(f"File extension not in extensions map: {fileExtension} ({filePath})")
+        LogError(f"Could not extract comments: File extension not in extensions map: {fileExtension} ({filePath})")
         return commentMap
     
     commentSign = fileExtensionToComment[fileExtension]
@@ -47,14 +47,14 @@ def getCommentMapFromFile(filePath, additionalLogic=defaultLogic):
     fileEncoding = getFileEncoding(filePath)
 
     with open(filePath, 'r', encoding=fileEncoding) as file:
-        for lineNumber, lineText in enumerate(file, start=1):
+        for lineNumber, lineText in enumerate(file, start=0):
             lineText = lineText.strip() # remowes '\n' from the end of each line
             index = lineText.find(commentSign)
             if index == -1:
                 continue
             commentText = lineText[index + len(commentSign):]
             if additionalLogic(commentText):
-                commentMap[index] = commentText
+                commentMap[lineNumber] = commentText
 
     return commentMap
 
