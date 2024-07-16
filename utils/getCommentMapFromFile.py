@@ -1,6 +1,11 @@
-from getFileParams.getFileExtension import getFileExtension
-from getFileParams.getFileEncoding import getFileEncoding
-from logger.LogError import LogError
+if __name__ == "__main__":
+    from getFileParams.getFileExtension import getFileExtension
+    from getFileParams.getFileEncoding import getFileEncoding
+    from logger.LogError import LogError
+else:
+    from utils.getFileParams.getFileExtension import getFileExtension
+    from utils.getFileParams.getFileEncoding import getFileEncoding
+    from utils.logger.LogError import LogError
 import os
 
 fileExtensionToComment = {

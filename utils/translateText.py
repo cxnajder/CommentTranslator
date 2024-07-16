@@ -1,5 +1,8 @@
 from googletrans import Translator
-from logger.LogError import LogError
+if __name__ == "__main__":
+    from logger.LogError import LogError
+else:
+    from utils.logger.LogError import LogError
 
 def translateText(text, destinationLanguage='en'):
     translator = Translator()
