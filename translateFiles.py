@@ -40,9 +40,7 @@ def replaceCommentsInFile(filePath, commentMap):
         fileLines = file.readlines()
 
         for lineNum, comment in commentMap.items():
-            print(fileLines[lineNum]) # DEBUG
             fileLines[lineNum] = replaceCommentInLine(fileLines[lineNum], comment, commentPattern)
-            print(fileLines[lineNum]) # DEBUG
 
     with open(filePath, 'w', encoding='utf-8') as file:
         file.writelines(fileLines)
