@@ -1,8 +1,11 @@
 import chardet
 
-def getFileEncoding(filePath, numBytes=512):
+def getFileEncoding(filePath, numBytes=0):
     with open(filePath, 'rb') as file:
-        rawData = file.read(numBytes)
+        if numBytes > 0:
+            rawData = file.read(numBytes)
+        else:
+            rawData = file.read()
         result = chardet.detect(rawData)
         encoding = result['encoding']
         if encoding == 'ascii':
