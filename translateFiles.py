@@ -9,23 +9,35 @@ from utils.getFileParams.getFileEncoding import getFileEncoding
 from utils.logger.LogError import LogError
 
 
-def translateFiles(folderPath):
+def translateFiles(folderPath, userPermissionRequired=False):
      for root, _, files in os.walk(folderPath):
         for fileName in files:
             filePath = os.path.join(root, fileName)
-            translateFile(filePath)
+            translateFile(filePath, userPermissionRequired)
 
 
-def translateFile(filePath):
+def translateFile(filePath, userPermissionRequired=False):
     # replace 'checkTextForForeignLang' with 'checkTextForCyrillic' if you are interested only in translating cyrillic
     translateCondition = checkTextForForeignLang
     commentMap = getCommentMapFromFile(filePath, translateCondition)
 
     for lineNum, comment in commentMap.items():
-        commentMap[lineNum] = translateText(comment)
+        if not userPermissionRequired:
+            commentMap[lineNum] = translateText(comment)
+        elif askUserPermission(comment):
+            commentMap[lineNum] = translateText(comment)
  
     replaceCommentsInFile(filePath, commentMap)
 
+
+def askUserPermission(textToTranslate):
+    print(f"Woud you like to translate:\n {textToTranslate}")
+    _input = input(">")
+    confirmation = ["y", "Y", "yes", "Yes", "YES"]
+    if _input in confirmation:
+        return True
+    else:
+        return False
    
 def replaceCommentsInFile(filePath, commentMap):
 
@@ -56,4 +68,4 @@ def replaceCommentInLine(line, newComment, commentPattern):
 
 if __name__ == "__main__":
     folderPathToTranslate = './samples'
-    translateFiles(folderPathToTranslate)
+    translateFiles(folderPathToTranslate, userPermissionRequired=True)
