@@ -62,6 +62,13 @@ def replaceCommentsInFile(filePath, commentMap):
 def replaceCommentInLine(line, newComment, commentPattern):
     index = line.index(commentPattern)
     newLine = line[:index + len(commentPattern)] + ' ' +newComment
+    
+    # This space before comment is important since googletranslate api 
+    # removes first white space from translated text:
+    # " text" => "text (but translated)"
+
+    # (I assumed most of commants have a space in front. personally I prefer this format)
+
     if line.endswith('\n'):
         newLine += '\n'
     return newLine
