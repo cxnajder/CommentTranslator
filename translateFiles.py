@@ -21,12 +21,21 @@ def translateFile(filePath, userPermissionRequired=False):
     translateCondition = checkTextForForeignLang
     commentMap = getCommentMapFromFile(filePath, translateCondition)
 
+    linesToRemove = []
+    
     for lineNum, comment in commentMap.items():
         if not userPermissionRequired:
             commentMap[lineNum] = translateText(comment)
         elif askUserPermission(comment):
             commentMap[lineNum] = translateText(comment)
- 
+        else:
+            # If user denied of translation add line number to removal
+            linesToRemove.append(lineNum)
+
+    # Remove denied lines
+    for lineNum in linesToRemove:
+        del commentMap[lineNum]
+
     replaceCommentsInFile(filePath, commentMap)
 
 
