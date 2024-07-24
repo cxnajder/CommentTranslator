@@ -50,6 +50,9 @@ def askUserPermission(textToTranslate):
    
 def replaceCommentsInFile(filePath, commentMap):
 
+    if commentMap == {}: # empty dict
+        return
+
     fileExt = getFileExtension(os.path.basename(filePath))
     if fileExt not in fileExtensionToComment:
         LogError(f"Could not translate: File extension not in extensions map: {fileExt} ({filePath})")
